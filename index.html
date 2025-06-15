@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Grow A Garden Values</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garden Values</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
+
+    .fancy-font {
+      font-family: 'Unbounded', cursive;
+    }
+  </style>
 </head>
-<body class="bg-green-50">
-  <header class="bg-white shadow-md">
-    <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between py-6 px-6">
-      <h1 class="text-3xl font-bold text-green-600 mb-4 sm:mb-0">Grow A Garden Values</h1>
-      <nav class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
-        <a href="#" class="px-4 py-2 text-green-600 font-semibold border border-green-600 rounded hover:bg-green-600 hover:text-white transition duration-200">Home</a>
-        <a href="#" class="px-4 py-2 text-green-600 font-semibold border border-green-600 rounded hover:bg-green-600 hover:text-white transition duration-200">Stock</a>
-        <a href="#" class="px-4 py-2 text-green-600 font-semibold border border-green-600 rounded hover:bg-green-600 hover:text-white transition duration-200">Trading</a>
-        <a href="#" class="px-4 py-2 text-green-600 font-semibold border border-green-600 rounded hover:bg-green-600 hover:text-white transition duration-200">Values</a>
+<body class="bg-green-50 text-gray-900">
+  <!-- Header -->
+  <header class="bg-white shadow-md fixed w-full z-50">
+    <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between py-4 px-6">
+      <h1 class="text-2xl font-bold text-green-700">Grow A Garden Values</h1>
+      <nav class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-0">
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Home</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Stock</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Trading</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Values</a>
       </nav>
     </div>
   </header>
-  <main class="container mx-auto p-6">
-    <!-- Page content goes here -->
-  </main>
+
+  <!-- Hero Section -->
+  <section class="h-screen flex items-center justify-center bg-gradient-to-br from-green-100 to-green-300">
+    <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
+  </section>
+
+  <!-- Login Section -->
+  <section class="h-screen bg-white flex flex-col items-center justify-center space-y-6">
+    <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-300">Login with Roblox</a>
+    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-300">Login with Discord</a>
+  </section>
+
+  <style>
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 1.6s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+  </style>
 </body>
 </html>
