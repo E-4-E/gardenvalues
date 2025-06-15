@@ -12,72 +12,41 @@
       font-family: 'Unbounded', cursive;
     }
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(40px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .animate-fadeIn {
-      animation: fadeIn 1.6s ease-out forwards;
-      animation-delay: 0.4s;
-    }
-
-    .btn-animate {
-      transition: all 0.3s ease;
-    }
-
-    .btn-home:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
-    }
-
-    .btn-stock:hover,
-    .btn-trading:hover,
-    .btn-values:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.5);
-    }
-
-    .btn-login-roblox:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(22, 163, 74, 0.5);
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
     .leaf-emoji {
       position: absolute;
       font-size: 2rem;
       animation: fall 10s linear infinite;
-      pointer-events: auto;
+      pointer-events: none;
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
+    .transition-all-smooth {
+      transition: all 0.5s ease-in-out;
     }
 
-    .transition-navbar {
-      transition: background-color 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+    .navbar-title {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease-in-out;
     }
 
-    .transition-hero {
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    .navbar-title.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
 
-  <!-- Background Video -->
+  <!-- Falling Leaves Background Video -->
   <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
     <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.webm" type="video/webm">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
   </div>
 
@@ -93,28 +62,26 @@
       leaf.style.left = `${Math.random() * 100}vw`;
       leaf.style.animationDelay = `${Math.random() * 10}s`;
       leaf.style.top = `-${Math.random() * 100}px`;
-
-      leaf.addEventListener('mouseover', () => {
-        leaf.style.transform = `translate(${(Math.random() * 200 - 100)}px, ${(Math.random() * 200 - 100)}px)`;
-      });
-
       leafContainer.appendChild(leaf);
     }
   </script>
 
   <!-- Header -->
-  <header id="navbar" class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur transition-navbar">
-    <div class="w-full flex flex-col sm:flex-row items-center justify-between py-4 px-3">
-      <!-- Left: Discord Logo (moved slightly in) -->
-      <div class="flex items-center">
-        <a href="https://discord.gg/groawamasssivegarden" target="_blank" class="ml-2">
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-blur transition-all-smooth shadow-md">
+    <div class="flex justify-between items-center px-4 sm:px-8 py-3">
+      <!-- Left: Discord Logo -->
+      <div class="flex items-center ml-2">
+        <a href="https://discord.gg/groawamasssivegarden" target="_blank">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 hover:scale-110 transition" />
         </a>
       </div>
 
-      <!-- Right: Navigation Buttons -->
-      <nav class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-0">
-        <a href="#" class="px-6 py-3 text-xl rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
+      <!-- Center: Nav Title (hidden at first) -->
+      <div id="navbarTitle" class="navbar-title text-green-900 text-2xl fancy-font font-bold absolute left-1/2 transform -translate-x-1/2"></div>
+
+      <!-- Right: Navigation -->
+      <nav class="flex space-x-3">
+        <a href="#" class="px-5 py-2 text-base rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
         <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
         <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-trading">💸 Trading</a>
         <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-values">📊 Values</a>
@@ -123,8 +90,8 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="h-screen flex items-center justify-center bg-transparent pt-28 transition-hero">
-    <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
+  <section id="hero" class="h-screen flex items-center justify-center pt-28 transition-all-smooth">
+    <h1 id="heroTitle" class="text-7xl sm:text-8xl text-green-800 fancy-font transition-all-smooth">Garden Values</h1>
   </section>
 
   <!-- Login Section -->
@@ -132,28 +99,36 @@
     <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-roblox">Login with Roblox</a>
   </section>
 
-  <!-- Scroll Animation Script -->
+  <!-- Scroll Logic -->
   <script>
-    const navbar = document.getElementById('navbar');
     const hero = document.getElementById('hero');
+    const heroTitle = document.getElementById('heroTitle');
+    const navbar = document.getElementById('navbar');
+    const navbarTitle = document.getElementById('navbarTitle');
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
 
-      // Make navbar background more solid on scroll
-      if (scrollY > 100) {
-        navbar.classList.add('bg-opacity-100', 'backdrop-blur-md', 'shadow-lg');
-        navbar.classList.remove('bg-opacity-90');
+      // Shrink hero title
+      if (scrollY > 50) {
+        heroTitle.style.transform = 'scale(0.6) translateY(-120px)';
+        heroTitle.style.opacity = '0';
       } else {
-        navbar.classList.remove('bg-opacity-100', 'backdrop-blur-md', 'shadow-lg');
-        navbar.classList.add('bg-opacity-90');
+        heroTitle.style.transform = 'scale(1) translateY(0)';
+        heroTitle.style.opacity = '1';
       }
 
-      // Fade out hero text as you scroll down
-      if (hero) {
-        const opacity = 1 - scrollY / 400;
-        hero.style.opacity = Math.max(0, opacity);
-        hero.style.transform = `translateY(${scrollY * 0.1}px)`;
+      // Show nav title and change background
+      if (scrollY > 250) {
+        navbar.classList.remove('bg-white', 'bg-opacity-80');
+        navbar.classList.add('bg-green-100');
+        navbarTitle.classList.add('show');
+        navbarTitle.textContent = 'Garden Values';
+      } else {
+        navbar.classList.remove('bg-green-100');
+        navbar.classList.add('bg-white', 'bg-opacity-80');
+        navbarTitle.classList.remove('show');
+        navbarTitle.textContent = '';
       }
     });
   </script>
