@@ -47,6 +47,23 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    .circle-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .circle-btn:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
@@ -76,35 +93,34 @@
 
   <!-- Header -->
   <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-blur transition-all-smooth shadow-md">
-    <div class="flex justify-between items-center px-4 sm:px-8 py-3">
+    <div class="flex justify-between items-center px-4 sm:px-8 py-3 relative">
+      
       <!-- Left: Discord Logo -->
       <div class="flex items-center ml-4">
         <a href="https://discord.gg/groawamasssivegarden" target="_blank">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 hover:scale-110 transition" />
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 hover:scale-110 transition ml-2" />
         </a>
       </div>
 
       <!-- Center: Nav Title -->
       <div id="navbarTitle" class="navbar-title absolute left-1/2 transform -translate-x-1/2 text-green-900 text-2xl fancy-font font-bold"></div>
 
-      <!-- Right: Navigation -->
-      <nav class="flex space-x-3">
-        <a href="#" class="px-5 py-2 text-base rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-trading">💸 Trading</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-values">📊 Values</a>
-      </nav>
+      <!-- Right: Circle Buttons -->
+      <div class="flex items-center space-x-3">
+        <!-- Roblox Login -->
+        <a href="#" title="Login with Roblox" class="circle-btn bg-green-700 text-white hover:bg-green-800">
+          R
+        </a>
+
+        <!-- Question Icon (Not Logged In) -->
+        <div class="circle-btn bg-white text-gray-700 border border-gray-300">?</div>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section id="hero" class="h-screen flex items-center justify-center pt-28 transition-all-smooth">
     <h1 id="heroTitle" class="text-7xl sm:text-8xl text-green-800 fancy-font transition-all-smooth">Garden Values</h1>
-  </section>
-
-  <!-- Login Section -->
-  <section class="min-h-screen bg-white bg-opacity-80 flex flex-col items-center justify-center space-y-6 py-40">
-    <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-roblox">Login with Roblox</a>
   </section>
 
   <!-- Scroll Logic -->
@@ -146,4 +162,3 @@
 
 </body>
 </html>
-
