@@ -43,11 +43,6 @@
       box-shadow: 0 0 12px 4px rgba(22, 163, 74, 0.5);
     }
 
-    .btn-login-discord:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(99, 102, 241, 0.5);
-    }
-
     .leaf-emoji {
       position: absolute;
       font-size: 2rem;
@@ -64,6 +59,14 @@
         transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
+    }
+
+    .transition-navbar {
+      transition: background-color 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .transition-hero {
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
   </style>
 </head>
@@ -100,11 +103,11 @@
   </script>
 
   <!-- Header -->
-  <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur">
-    <div class="w-full flex flex-col sm:flex-row items-center justify-between py-4 px-0">
-      <!-- Left: Discord Logo -->
-      <div class="pl-2 ml-0 flex items-center">
-        <a href="https://discord.gg/groawamasssivegarden" target="_blank">
+  <header id="navbar" class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur transition-navbar">
+    <div class="w-full flex flex-col sm:flex-row items-center justify-between py-4 px-3">
+      <!-- Left: Discord Logo (moved slightly in) -->
+      <div class="flex items-center">
+        <a href="https://discord.gg/groawamasssivegarden" target="_blank" class="ml-2">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 hover:scale-110 transition" />
         </a>
       </div>
@@ -120,15 +123,40 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="h-screen flex items-center justify-center bg-transparent pt-28">
+  <section id="hero" class="h-screen flex items-center justify-center bg-transparent pt-28 transition-hero">
     <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
   </section>
 
   <!-- Login Section -->
   <section class="min-h-screen bg-white bg-opacity-80 flex flex-col items-center justify-center space-y-6 py-40">
     <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-roblox">Login with Roblox</a>
-    <a href="#" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-discord">Login with Discord</a>
   </section>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    const navbar = document.getElementById('navbar');
+    const hero = document.getElementById('hero');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+
+      // Make navbar background more solid on scroll
+      if (scrollY > 100) {
+        navbar.classList.add('bg-opacity-100', 'backdrop-blur-md', 'shadow-lg');
+        navbar.classList.remove('bg-opacity-90');
+      } else {
+        navbar.classList.remove('bg-opacity-100', 'backdrop-blur-md', 'shadow-lg');
+        navbar.classList.add('bg-opacity-90');
+      }
+
+      // Fade out hero text as you scroll down
+      if (hero) {
+        const opacity = 1 - scrollY / 400;
+        hero.style.opacity = Math.max(0, opacity);
+        hero.style.transform = `translateY(${scrollY * 0.1}px)`;
+      }
+    });
+  </script>
 
 </body>
 </html>
