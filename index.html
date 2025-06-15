@@ -46,33 +46,12 @@
       transform: scale(1.07);
       box-shadow: 0 0 12px 4px rgba(99, 102, 241, 0.5);
     }
-
-    .leaf {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/427/427735.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      pointer-events: auto;
-    }
-
-    @keyframes randomFall {
-      0% {
-        transform: translate(0, -100px) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(calc(-50vw + 100vw * var(--x)), 100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
   </style>
 </head>
 <body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
 
-  <!-- Background Video -->
-  <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
+  <!-- Background Video (faint background) -->
+  <div class="fixed top-0 left-0 w-full h-full -z-20 overflow-hidden">
     <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.webm" type="video/webm">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
@@ -80,30 +59,13 @@
     </video>
   </div>
 
-  <!-- Falling Cartoon Leaves -->
-  <div id="leaves"></div>
-  <script>
-    const leafContainer = document.getElementById('leaves');
-    for (let i = 0; i < 20; i++) {
-      const leaf = document.createElement('div');
-      leaf.classList.add('leaf');
-      leaf.style.left = `${Math.random() * 100}vw`;
-      leaf.style.top = `-${Math.random() * 100}px`;
-      leaf.style.setProperty('--x', Math.random());
-      leaf.style.animation = `randomFall ${8 + Math.random() * 5}s linear infinite`;
-      leaf.style.animationDelay = `${Math.random() * 5}s`;
-
-      leaf.addEventListener('mouseenter', () => {
-        leaf.style.transition = 'transform 0.5s ease';
-        leaf.style.transform = 'translateX(100px) scale(1.2)';
-        setTimeout(() => {
-          leaf.style.transform = '';
-        }, 500);
-      });
-
-      leafContainer.appendChild(leaf);
-    }
-  </script>
+  <!-- Aesthetic Top Banner Video (cartoony leaves falling at the top) -->
+  <div class="absolute top-0 left-0 w-full h-48 z-10 pointer-events-none overflow-hidden">
+    <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80">
+      <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
   <!-- Header -->
   <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur">
@@ -131,4 +93,3 @@
 
 </body>
 </html>
-
