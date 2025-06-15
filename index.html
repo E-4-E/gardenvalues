@@ -12,97 +12,70 @@
       font-family: 'Unbounded', cursive;
     }
 
-    .btn-animate {
-      transition: all 0.3s ease;
+    .transition-all {
+      transition: all 0.4s ease;
     }
 
-    .btn-home:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
+    .navbar-scrolled {
+      background-color: rgba(74, 222, 128, 0.9) !important; /* lighter green */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .btn-stock:hover,
-    .btn-trading:hover,
-    .btn-values:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.5);
+    .title-normal {
+      font-size: 4rem;
+      transform: translateY(0);
     }
 
-    .btn-login-roblox:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(22, 163, 74, 0.5);
-    }
-
-    .btn-login-discord:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 12px 4px rgba(99, 102, 241, 0.5);
-    }
-
-    .title-transition {
-      transition: transform 0.4s ease, font-size 0.4s ease;
-      transform-origin: top center;
+    .title-shrunk {
+      font-size: 1.5rem;
+      transform: translateY(-1.5rem);
     }
   </style>
 </head>
-<body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
-
-  <!-- Background Video -->
-  <div class="fixed top-0 left-0 w-full h-full -z-20 overflow-hidden">
-    <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
-      <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.webm" type="video/webm">
-      <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
-    </video>
-  </div>
+<body class="bg-green-50 text-gray-900 overflow-x-hidden">
 
   <!-- Navbar -->
-  <header id="navbar" class="fixed top-0 left-0 w-full z-50 backdrop-blur bg-white bg-opacity-90 transition-all duration-300 h-20 flex items-center px-6">
-    <!-- Discord Icon -->
-    <a href="https://discord.gg/growamassivegarden" target="_blank" class="mr-4">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="w-8 h-8" />
-    </a>
-
-    <!-- Title (only one, reused) -->
-    <div class="absolute left-1/2 transform -translate-x-1/2 transition-all duration-300">
-      <h1 id="shared-title" class="fancy-font text-green-800 text-7xl sm:text-8xl title-transition">Garden Values</h1>
+  <header id="navbar" class="fixed top-0 left-0 w-full z-40 bg-white bg-opacity-90 backdrop-blur transition-all">
+    <div class="container mx-auto flex items-center justify-between px-6 py-4">
+      <h1 id="navbar-title" class="text-green-700 font-bold fancy-font transition-all title-normal mx-auto">Garden Values</h1>
+      <nav class="hidden sm:flex space-x-4 absolute right-6 top-1/2 transform -translate-y-1/2">
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate">🛒 Stock</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate">💸 Trading</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate">📊 Values</a>
+      </nav>
     </div>
-
-    <!-- Nav Buttons -->
-    <nav class="ml-auto flex items-center space-x-4">
-      <a href="#" class="px-6 py-3 text-xl rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
-      <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
-      <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-trading">💸 Trading</a>
-      <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-values">📊 Values</a>
-    </nav>
   </header>
 
-  <!-- Spacer to push down the title initially -->
-  <div style="height: 50vh;"></div>
+  <!-- Hero Title Section (shown before scroll) -->
+  <section class="h-screen flex items-center justify-center pt-32">
+    <h1 id="hero-title" class="text-6xl sm:text-7xl text-green-800 fancy-font transition-all">Garden Values</h1>
+  </section>
 
   <!-- Login Section -->
   <section class="min-h-screen bg-white bg-opacity-80 flex flex-col items-center justify-center space-y-6 py-40">
-    <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-roblox">Login with Roblox</a>
-    <a href="http://127.0.0.1:5000/login" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-discord">Login with Discord</a>
+    <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg btn-animate">Login with Roblox</a>
+    <a href="http://127.0.0.1:5000/login" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg btn-animate">Login with Discord</a>
   </section>
 
-  <!-- Scroll Script -->
   <script>
-    const title = document.getElementById("shared-title");
-    const navbar = document.getElementById("navbar");
+    const navbar = document.getElementById('navbar');
+    const heroTitle = document.getElementById('hero-title');
+    const navbarTitle = document.getElementById('navbar-title');
 
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY;
-
-      if (scrollY > 100) {
-        title.style.transform = "translateY(-40px) scale(0.45)";
-        navbar.classList.remove("bg-white", "bg-opacity-90");
-        navbar.classList.add("bg-green-200");
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
+        heroTitle.classList.add('opacity-0');
+        navbarTitle.classList.remove('title-normal');
+        navbarTitle.classList.add('title-shrunk');
       } else {
-        title.style.transform = "translateY(0) scale(1)";
-        navbar.classList.remove("bg-green-200");
-        navbar.classList.add("bg-white", "bg-opacity-90");
+        navbar.classList.remove('navbar-scrolled');
+        heroTitle.classList.remove('opacity-0');
+        navbarTitle.classList.add('title-normal');
+        navbarTitle.classList.remove('title-shrunk');
       }
     });
   </script>
-
 </body>
 </html>
+
