@@ -51,20 +51,19 @@
       position: absolute;
       width: 40px;
       height: 40px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/765/765495.png');
+      background-image: url('https://cdn-icons-png.flaticon.com/512/427/427735.png');
       background-size: contain;
       background-repeat: no-repeat;
-      animation: fall 10s linear infinite;
       pointer-events: auto;
     }
 
-    @keyframes fall {
+    @keyframes randomFall {
       0% {
-        transform: translateY(-100px) rotate(0deg);
+        transform: translate(0, -100px) rotate(0deg);
         opacity: 1;
       }
       100% {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translate(calc(-50vw + 100vw * var(--x)), 100vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -85,15 +84,21 @@
   <div id="leaves"></div>
   <script>
     const leafContainer = document.getElementById('leaves');
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 20; i++) {
       const leaf = document.createElement('div');
       leaf.classList.add('leaf');
       leaf.style.left = `${Math.random() * 100}vw`;
-      leaf.style.animationDelay = `${Math.random() * 10}s`;
       leaf.style.top = `-${Math.random() * 100}px`;
+      leaf.style.setProperty('--x', Math.random());
+      leaf.style.animation = `randomFall ${8 + Math.random() * 5}s linear infinite`;
+      leaf.style.animationDelay = `${Math.random() * 5}s`;
 
-      leaf.addEventListener('mousemove', () => {
-        leaf.style.transform = `translate(${(Math.random() * 200 - 100)}px, ${(Math.random() * 200 - 100)}px)`;
+      leaf.addEventListener('mouseenter', () => {
+        leaf.style.transition = 'transform 0.5s ease';
+        leaf.style.transform = 'translateX(100px) scale(1.2)';
+        setTimeout(() => {
+          leaf.style.transform = '';
+        }, 500);
       });
 
       leafContainer.appendChild(leaf);
