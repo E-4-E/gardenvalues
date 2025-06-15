@@ -47,23 +47,20 @@
       box-shadow: 0 0 12px 4px rgba(99, 102, 241, 0.5);
     }
 
-    .leaf {
+    .leaf-emoji {
       position: absolute;
-      width: 40px;
-      height: 40px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/427/427735.png');
-      background-size: contain;
-      background-repeat: no-repeat;
+      font-size: 2rem;
+      animation: fall 10s linear infinite;
       pointer-events: auto;
     }
 
-    @keyframes randomFall {
+    @keyframes fall {
       0% {
-        transform: translate(0, -100px) rotate(0deg);
+        transform: translateY(-100px) rotate(0deg);
         opacity: 1;
       }
       100% {
-        transform: translate(calc(-50vw + 100vw * var(--x)), 100vh) rotate(360deg);
+        transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -80,25 +77,21 @@
     </video>
   </div>
 
-  <!-- Falling Cartoon Leaves -->
+  <!-- Falling Emoji Leaves -->
   <div id="leaves"></div>
   <script>
     const leafContainer = document.getElementById('leaves');
+    const emojis = ['🍂', '🌿', '🍃'];
     for (let i = 0; i < 20; i++) {
       const leaf = document.createElement('div');
-      leaf.classList.add('leaf');
+      leaf.classList.add('leaf-emoji');
+      leaf.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       leaf.style.left = `${Math.random() * 100}vw`;
+      leaf.style.animationDelay = `${Math.random() * 10}s`;
       leaf.style.top = `-${Math.random() * 100}px`;
-      leaf.style.setProperty('--x', Math.random());
-      leaf.style.animation = `randomFall ${8 + Math.random() * 5}s linear infinite`;
-      leaf.style.animationDelay = `${Math.random() * 5}s`;
 
-      leaf.addEventListener('mouseenter', () => {
-        leaf.style.transition = 'transform 0.5s ease';
-        leaf.style.transform = 'translateX(100px) scale(1.2)';
-        setTimeout(() => {
-          leaf.style.transform = '';
-        }, 500);
+      leaf.addEventListener('mouseover', () => {
+        leaf.style.transform = `translate(${(Math.random() * 200 - 100)}px, ${(Math.random() * 200 - 100)}px)`;
       });
 
       leafContainer.appendChild(leaf);
@@ -108,7 +101,10 @@
   <!-- Header -->
   <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur">
     <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between py-4 px-6">
-      <h1 class="text-2xl font-bold text-green-700">Grow A Garden Values</h1>
+      <div class="flex items-center space-x-4">
+        <a href="https://discord.gg/groawamasssivegarden" target="_blank" class="text-indigo-600 text-2xl hover:scale-110 transition">💬</a>
+        <h1 class="text-2xl font-bold text-green-700">Grow A Garden Values</h1>
+      </div>
       <nav class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-0">
         <a href="#" class="px-6 py-3 text-xl rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
         <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
