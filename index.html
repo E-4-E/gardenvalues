@@ -49,12 +49,13 @@
 
     .leaf {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/2909/2909767.png');
+      width: 40px;
+      height: 40px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/765/765495.png');
       background-size: contain;
       background-repeat: no-repeat;
-      animation: fall 5s linear infinite;
+      animation: fall 10s linear infinite;
+      pointer-events: auto;
     }
 
     @keyframes fall {
@@ -63,7 +64,7 @@
         opacity: 1;
       }
       100% {
-        transform: translateY(800px) rotate(360deg);
+        transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -84,11 +85,17 @@
   <div id="leaves"></div>
   <script>
     const leafContainer = document.getElementById('leaves');
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       const leaf = document.createElement('div');
       leaf.classList.add('leaf');
       leaf.style.left = `${Math.random() * 100}vw`;
-      leaf.style.animationDelay = `${Math.random() * 5}s`;
+      leaf.style.animationDelay = `${Math.random() * 10}s`;
+      leaf.style.top = `-${Math.random() * 100}px`;
+
+      leaf.addEventListener('mousemove', () => {
+        leaf.style.transform = `translate(${(Math.random() * 200 - 100)}px, ${(Math.random() * 200 - 100)}px)`;
+      });
+
       leafContainer.appendChild(leaf);
     }
   </script>
@@ -119,3 +126,4 @@
 
 </body>
 </html>
+
