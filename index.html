@@ -59,21 +59,19 @@
     </video>
   </div>
 
-  <!-- Header / Navbar -->
-  <header id="navbar" class="bg-white bg-opacity-90 shadow-md fixed w-full z-40 backdrop-blur transition-all duration-300 h-20 flex items-center px-6">
+  <!-- Navbar -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 backdrop-blur bg-white bg-opacity-90 transition-all duration-300 h-20 flex items-center px-6">
     <!-- Discord Icon -->
-    <div class="flex items-center">
-      <a href="https://discord.gg/growamassivegarden" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="w-8 h-8" />
-      </a>
-    </div>
+    <a href="https://discord.gg/growamassivegarden" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="w-8 h-8" />
+    </a>
 
-    <!-- Center Title -->
+    <!-- Shrunk Title Centered -->
     <div class="absolute left-1/2 transform -translate-x-1/2">
-      <h1 id="main-title" class="font-bold text-green-700 text-xl transition-all duration-300 whitespace-nowrap">Garden Values</h1>
+      <h1 id="main-title" class="fancy-font text-green-800 text-lg font-bold transition-all duration-300 opacity-0">Garden Values</h1>
     </div>
 
-    <!-- Navigation -->
+    <!-- Nav Buttons -->
     <nav class="ml-auto flex items-center space-x-4">
       <a href="#" class="px-6 py-3 text-xl rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
       <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
@@ -82,12 +80,12 @@
     </nav>
   </header>
 
-  <!-- Hero Title -->
-  <section id="hero-title" class="h-screen flex items-center justify-center bg-transparent pt-28 transition-all duration-300">
-    <h1 class="text-7xl sm:text-8xl text-green-800 fancy-font animate-fadeIn" id="hero-heading">Garden Values</h1>
+  <!-- Hero Section -->
+  <section id="hero-section" class="h-screen flex items-center justify-center bg-transparent pt-28 transition-all duration-300">
+    <h1 id="hero-title" class="text-7xl sm:text-8xl text-green-800 fancy-font animate-fadeIn transition-all duration-500">Garden Values</h1>
   </section>
 
-  <!-- Login Buttons Section -->
+  <!-- Login Section -->
   <section class="min-h-screen bg-white bg-opacity-80 flex flex-col items-center justify-center space-y-6 py-40">
     <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-roblox">Login with Roblox</a>
     <a href="http://127.0.0.1:5000/login" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-discord">Login with Discord</a>
@@ -104,28 +102,31 @@
     }
 
     const navbar = document.getElementById("navbar");
-    const headerTitle = document.getElementById("main-title");
-    const hero = document.getElementById("hero-title");
-    const heroHeading = document.getElementById("hero-heading");
+    const heroTitle = document.getElementById("hero-title");
+    const mainTitle = document.getElementById("main-title");
 
     let scrolled = false;
 
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100 && !scrolled) {
-        navbar.classList.add("bg-green-600");
         navbar.classList.remove("bg-white", "bg-opacity-90");
-        headerTitle.classList.add("text-base");
-        hero.style.height = "80px";
-        hero.style.paddingTop = "0px";
-        heroHeading.style.display = "none";
+        navbar.classList.add("bg-green-200");
+
+        heroTitle.style.opacity = "0";
+        heroTitle.style.transform = "scale(0.6)";
+        mainTitle.classList.remove("opacity-0");
+        mainTitle.classList.add("opacity-100");
+
         scrolled = true;
       } else if (window.scrollY <= 100 && scrolled) {
-        navbar.classList.remove("bg-green-600");
         navbar.classList.add("bg-white", "bg-opacity-90");
-        headerTitle.classList.remove("text-base");
-        hero.style.height = "100vh";
-        hero.style.paddingTop = "7rem";
-        heroHeading.style.display = "block";
+        navbar.classList.remove("bg-green-200");
+
+        heroTitle.style.opacity = "1";
+        heroTitle.style.transform = "scale(1)";
+        mainTitle.classList.remove("opacity-100");
+        mainTitle.classList.add("opacity-0");
+
         scrolled = false;
       }
     });
