@@ -46,6 +46,27 @@
       transform: scale(1.07);
       box-shadow: 0 0 12px 4px rgba(99, 102, 241, 0.5);
     }
+
+    .leaf {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/2909/2909767.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(800px) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
@@ -58,6 +79,19 @@
       Your browser does not support the video tag.
     </video>
   </div>
+
+  <!-- Falling Cartoon Leaves -->
+  <div id="leaves"></div>
+  <script>
+    const leafContainer = document.getElementById('leaves');
+    for (let i = 0; i < 10; i++) {
+      const leaf = document.createElement('div');
+      leaf.classList.add('leaf');
+      leaf.style.left = `${Math.random() * 100}vw`;
+      leaf.style.animationDelay = `${Math.random() * 5}s`;
+      leafContainer.appendChild(leaf);
+    }
+  </script>
 
   <!-- Header -->
   <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur">
