@@ -16,6 +16,7 @@
       0% { opacity: 0; transform: translateY(40px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
     .animate-fadeIn {
       animation: fadeIn 1.6s ease-out forwards;
       animation-delay: 0.4s;
@@ -46,111 +47,85 @@
       transform: scale(1.07);
       box-shadow: 0 0 12px 4px rgba(99, 102, 241, 0.5);
     }
-
-    /* Shrinking effect */
-    .sticky-title {
-      transition: all 0.3s ease;
-    }
-    .shrink {
-      font-size: 1.25rem !important;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-    }
   </style>
 </head>
 <body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
-
-  <!-- Discord Avatar & Username (Top-Left) -->
-  <div class="absolute top-5 left-6 flex items-center space-x-2 z-50">
-    <img id="avatar" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-green-600" />
-    <h3 id="username" class="text-md font-semibold text-green-800">???</h3>
-  </div>
 
   <!-- Background Video -->
   <div class="fixed top-0 left-0 w-full h-full -z-20 overflow-hidden">
     <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.webm" type="video/webm">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
   </div>
 
-  <!-- Aesthetic Top Banner Video -->
+  <!-- Top Banner Video -->
   <div class="absolute top-0 left-0 w-full h-48 z-10 pointer-events-none overflow-hidden">
     <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
   </div>
 
   <!-- Header -->
-  <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-40 backdrop-blur">
-    <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between py-4 px-6">
-      <div class="flex items-center space-x-3">
-        <a href="https://discord.gg/growamassivegarden" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="w-10 h-10" />
-        </a>
-        <h1 class="text-2xl font-bold text-green-700">Grow A Garden Values</h1>
-      </div>
-      <nav class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-0">
-        <a href="#" class="px-6 py-3 text-xl rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-trading">💸 Trading</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-values">📊 Values</a>
-      </nav>
+  <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-40 backdrop-blur transition-all duration-300 h-20 flex items-center px-6">
+    <!-- Discord Icon -->
+    <div class="flex items-center">
+      <a href="https://discord.gg/growamassivegarden" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="w-8 h-8" />
+      </a>
     </div>
+
+    <!-- Center Title -->
+    <div class="absolute left-1/2 transform -translate-x-1/2">
+      <h1 id="main-title" class="text-2xl font-bold text-green-700 transition-all duration-300 text-center">Grow A Garden Values</h1>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="ml-auto flex items-center space-x-4">
+      <a href="#" class="px-6 py-3 text-xl rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
+      <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
+      <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-trading">💸 Trading</a>
+      <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-values">📊 Values</a>
+    </nav>
   </header>
 
-  <!-- Sticky Shrinking Title -->
-  <div id="shrink-title" class="fancy-font fixed top-[72px] left-0 w-full text-center text-6xl text-green-800 z-30 sticky-title transition-all duration-300 pointer-events-none">
-    Garden Values
-  </div>
-
-  <!-- Hero Section -->
-  <section class="h-screen flex items-center justify-center bg-transparent pt-40">
-    <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
+  <!-- Hero Title -->
+  <section id="hero-title" class="h-screen flex items-center justify-center bg-transparent pt-28 transition-all duration-300">
+    <h1 class="text-7xl sm:text-8xl text-green-800 fancy-font animate-fadeIn">Garden Values</h1>
   </section>
 
-  <!-- Login Section -->
+  <!-- Login Buttons -->
   <section class="min-h-screen bg-white bg-opacity-80 flex flex-col items-center justify-center space-y-6 py-40">
     <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-roblox">Login with Roblox</a>
     <a href="http://127.0.0.1:5000/login" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-discord">Login with Discord</a>
   </section>
 
-  <!-- Script: Discord Info + Sticky Title Shrink -->
+  <!-- Confetti + Scroll Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const loggedIn = params.get("logged_in");
-
-    if (loggedIn === "1") {
-      const username = params.get("username");
-      const discriminator = params.get("discriminator");
-      const avatar = params.get("avatar");
-      const userId = params.get("id");
-
-      document.getElementById("username").textContent = `${username}#${discriminator}`;
-      if (avatar) {
-        const imgUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatar}.png`;
-        document.getElementById("avatar").src = imgUrl;
-      }
-
-      confetti({
-        particleCount: 300,
-        spread: 100,
-        origin: { y: 0.6 }
-      });
+    if (params.get("logged_in") === "1") {
+      confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
       alert("🎉 You have successfully logged in with Discord!");
       history.replaceState({}, document.title, window.location.pathname);
     }
 
-    // Shrink title on scroll
-    const title = document.getElementById("shrink-title");
+    const headerTitle = document.getElementById("main-title");
+    const hero = document.getElementById("hero-title");
+
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
-        title.classList.add("shrink");
+        headerTitle.classList.remove("text-2xl");
+        headerTitle.classList.add("text-base");
+        hero.style.height = "80px";
+        hero.style.paddingTop = "0px";
+        hero.querySelector("h1").style.display = "none";
       } else {
-        title.classList.remove("shrink");
+        headerTitle.classList.add("text-2xl");
+        headerTitle.classList.remove("text-base");
+        hero.style.height = "100vh";
+        hero.style.paddingTop = "7rem";
+        hero.querySelector("h1").style.display = "block";
       }
     });
   </script>
