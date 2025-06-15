@@ -11,34 +11,7 @@
     .fancy-font {
       font-family: 'Unbounded', cursive;
     }
-  </style>
-</head>
-<body class="bg-green-50 text-gray-900">
-  <!-- Header -->
-  <header class="bg-white shadow-md fixed w-full z-50">
-    <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between py-4 px-6">
-      <h1 class="text-2xl font-bold text-green-700">Grow A Garden Values</h1>
-      <nav class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-0">
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Home</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Stock</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Trading</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium hover:bg-green-600 hover:text-white transition-all duration-300 shadow">Values</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="h-screen flex items-center justify-center bg-gradient-to-br from-green-100 to-green-300">
-    <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
-  </section>
-
-  <!-- Login Section -->
-  <section class="h-screen bg-white flex flex-col items-center justify-center space-y-6">
-    <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-300">Login with Roblox</a>
-    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-300">Login with Discord</a>
-  </section>
-
-  <style>
     @keyframes fadeIn {
       0% { opacity: 0; transform: translateY(40px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -47,6 +20,48 @@
       animation: fadeIn 1.6s ease-out forwards;
       animation-delay: 0.4s;
     }
+
+    .btn-animate {
+      transition: all 0.3s ease;
+    }
+    .btn-animate:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 12px 4px rgba(0, 255, 100, 0.5);
+    }
   </style>
+</head>
+<body class="bg-green-50 text-gray-900 relative overflow-hidden">
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover opacity-20 -z-10">
+    <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.webm" type="video/webm">
+    <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Header -->
+  <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur">
+    <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between py-4 px-6">
+      <h1 class="text-2xl font-bold text-green-700">Grow A Garden Values</h1>
+      <nav class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 sm:mt-0">
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate">Home</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate">Stock</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate">Trading</a>
+        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate">Values</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="h-screen flex items-center justify-center bg-transparent">
+    <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
+  </section>
+
+  <!-- Login Section -->
+  <section class="h-screen bg-white bg-opacity-80 flex flex-col items-center justify-center space-y-6">
+    <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate">Login with Roblox</a>
+    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate">Login with Discord</a>
+  </section>
+
 </body>
 </html>
