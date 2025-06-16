@@ -12,54 +12,102 @@
       font-family: 'Unbounded', cursive;
     }
 
-    @keyframes fall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 1.6s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+
+    .btn-animate {
+      transition: all 0.3s ease;
+    }
+
+    .btn-home:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-stock:hover,
+    .btn-trading:hover,
+    .btn-values:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.5);
+    }
+
+    .circle-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .circle-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.5);
+    }
+
+    .circle-btn.login {
+      background-color: #15803d;
+      color: white;
+    }
+
+    .circle-btn.login:hover {
+      background-color: #166534;
+      box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.6);
+    }
+
+    .circle-btn.info {
+      background-color: white;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+
+    .circle-btn.info:hover {
+      box-shadow: 0 0 12px 4px rgba(156, 163, 175, 0.4);
     }
 
     .leaf-emoji {
       position: absolute;
       font-size: 2rem;
       animation: fall 10s linear infinite;
-      pointer-events: none;
+      pointer-events: auto;
     }
 
-    .transition-all-smooth {
-      transition: all 0.5s ease-in-out;
-    }
-
-    .navbar-title {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.4s ease-in-out;
-    }
-
-    .navbar-title.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    #heroOverlay {
-      transition: opacity 0.6s ease-in-out;
-    }
-
-    #heroOverlay.fade-out {
-      opacity: 0;
-      pointer-events: none;
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
 
-  <!-- Falling Leaves + Background Video -->
-  <div id="heroOverlay" class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
+  <!-- Background Video -->
+  <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
     <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.webm" type="video/webm">
       <source src="https://www.videvo.net/videvo_files/converted/2014_08/preview/Falling_Leaves_Loop1.mp473635.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
-    <div id="leaves"></div>
   </div>
 
+  <!-- Falling Emoji Leaves -->
+  <div id="leaves"></div>
   <script>
     const leafContainer = document.getElementById('leaves');
     const emojis = ['🍂', '🌿', '🍃'];
@@ -70,79 +118,40 @@
       leaf.style.left = `${Math.random() * 100}vw`;
       leaf.style.animationDelay = `${Math.random() * 10}s`;
       leaf.style.top = `-${Math.random() * 100}px`;
+
+      leaf.addEventListener('mouseover', () => {
+        leaf.style.transform = `translate(${(Math.random() * 200 - 100)}px, ${(Math.random() * 200 - 100)}px)`;
+      });
+
       leafContainer.appendChild(leaf);
     }
   </script>
 
   <!-- Header -->
-  <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-blur transition-all-smooth shadow-md">
-    <div class="flex justify-between items-center px-4 sm:px-8 py-3">
+  <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur transition-all duration-500">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
       <!-- Left: Discord Logo -->
-      <div class="flex items-center ml-4">
+      <div class="flex items-center">
         <a href="https://discord.gg/groawamasssivegarden" target="_blank">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 hover:scale-110 transition" />
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 ml-1 hover:scale-110 transition" />
         </a>
       </div>
 
-      <!-- Center: Nav Title -->
-      <div id="navbarTitle" class="navbar-title absolute left-1/2 transform -translate-x-1/2 text-green-900 text-2xl fancy-font font-bold"></div>
+      <!-- Center: Site Title -->
+      <h1 class="text-xl sm:text-2xl text-green-800 fancy-font transition-all duration-700 ease-in-out">Garden Values</h1>
 
-      <!-- Right: Navigation -->
-      <nav class="flex space-x-3">
-        <a href="#" class="px-5 py-2 text-base rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-trading">💸 Trading</a>
-        <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-values">📊 Values</a>
-      </nav>
+      <!-- Right: Buttons -->
+      <div class="flex space-x-3 items-center">
+        <a href="#" title="Login with Roblox" class="circle-btn login">R</a>
+        <div class="circle-btn info">?</div>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="h-screen flex items-center justify-center pt-28 transition-all-smooth">
-    <h1 id="heroTitle" class="text-7xl sm:text-8xl text-green-800 fancy-font transition-all-smooth">Garden Values</h1>
+  <section class="h-screen flex items-center justify-center bg-transparent pt-28">
+    <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
   </section>
-
-  <!-- Login Section -->
-  <section class="min-h-screen bg-white bg-opacity-80 flex flex-col items-center justify-center space-y-6 py-40">
-    <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-10 py-5 rounded-full text-lg shadow-lg transition-all duration-300 btn-animate btn-login-roblox">Login with Roblox</a>
-  </section>
-
-  <!-- Scroll Logic -->
-  <script>
-    const hero = document.getElementById('hero');
-    const heroTitle = document.getElementById('heroTitle');
-    const navbar = document.getElementById('navbar');
-    const navbarTitle = document.getElementById('navbarTitle');
-    const heroOverlay = document.getElementById('heroOverlay');
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-
-      // Shrink and fade out hero title
-      if (scrollY > 50) {
-        heroTitle.style.transform = 'scale(0.6) translateY(-120px)';
-        heroTitle.style.opacity = '0';
-      } else {
-        heroTitle.style.transform = 'scale(1) translateY(0)';
-        heroTitle.style.opacity = '1';
-      }
-
-      // Show nav title and change navbar color
-      if (scrollY > 250) {
-        navbar.classList.remove('bg-white', 'bg-opacity-80');
-        navbar.classList.add('bg-green-100');
-        navbarTitle.classList.add('show');
-        navbarTitle.textContent = 'Garden Values';
-        heroOverlay.classList.add('fade-out');
-      } else {
-        navbar.classList.remove('bg-green-100');
-        navbar.classList.add('bg-white', 'bg-opacity-80');
-        navbarTitle.classList.remove('show');
-        navbarTitle.textContent = '';
-        heroOverlay.classList.remove('fade-out');
-      }
-    });
-  </script>
 
 </body>
 </html>
