@@ -38,42 +38,14 @@
       box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.5);
     }
 
-    .circle-btn {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .circle-btn:hover {
+    .btn-login-roblox:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.5);
+      box-shadow: 0 0 12px 4px rgba(22, 163, 74, 0.5);
     }
 
-    .circle-btn.login {
-      background-color: #15803d;
-      color: white;
-    }
-
-    .circle-btn.login:hover {
-      background-color: #166534;
-      box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.6);
-    }
-
-    .circle-btn.info {
-      background-color: white;
-      color: #374151;
-      border: 1px solid #d1d5db;
-    }
-
-    .circle-btn.info:hover {
-      box-shadow: 0 0 12px 4px rgba(156, 163, 175, 0.4);
+    .btn-info:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 12px 4px rgba(120, 120, 120, 0.5);
     }
 
     .leaf-emoji {
@@ -93,6 +65,20 @@
         opacity: 0;
       }
     }
+
+    .navbar-scrolled {
+      background-color: #d1fae5 !important;
+      transition: background-color 0.5s ease;
+    }
+
+    .nav-transition {
+      transition: all 0.5s ease;
+    }
+
+    .logo-shrink {
+      font-size: 1.25rem !important;
+      transform: scale(0.8);
+    }
   </style>
 </head>
 <body class="bg-green-50 text-gray-900 relative overflow-x-hidden min-h-screen">
@@ -111,7 +97,7 @@
   <script>
     const leafContainer = document.getElementById('leaves');
     const emojis = ['🍂', '🌿', '🍃'];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 25; i++) {
       const leaf = document.createElement('div');
       leaf.classList.add('leaf-emoji');
       leaf.innerText = emojis[Math.floor(Math.random() * emojis.length)];
@@ -128,30 +114,55 @@
   </script>
 
   <!-- Header -->
-  <header class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur transition-all duration-500">
-    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+  <header id="navbar" class="bg-white bg-opacity-90 shadow-md fixed w-full z-50 backdrop-blur nav-transition">
+    <div class="container mx-auto flex items-center justify-between py-3 px-6">
       <!-- Left: Discord Logo -->
-      <div class="flex items-center">
-        <a href="https://discord.gg/groawamasssivegarden" target="_blank">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 ml-1 hover:scale-110 transition" />
-        </a>
-      </div>
+      <a href="https://discord.gg/groawamasssivegarden" target="_blank">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord" class="w-8 h-8 hover:scale-110 transition" />
+      </a>
 
-      <!-- Center: Site Title -->
-      <h1 class="text-xl sm:text-2xl text-green-800 fancy-font transition-all duration-700 ease-in-out">Garden Values</h1>
+      <!-- Center: Logo -->
+      <div id="navTitle" class="text-xl fancy-font text-green-800 transition-all">Garden Values</div>
 
       <!-- Right: Buttons -->
-      <div class="flex space-x-3 items-center">
-        <a href="#" title="Login with Roblox" class="circle-btn login">R</a>
-        <div class="circle-btn info">?</div>
+      <div class="flex items-center space-x-3">
+        <a href="#" class="btn-login-roblox w-10 h-10 flex items-center justify-center bg-green-700 text-white rounded-full shadow-lg transition-all">R</a>
+        <a href="#" class="btn-info w-10 h-10 flex items-center justify-center bg-gray-300 text-gray-800 rounded-full shadow-lg transition-all">?</a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="h-screen flex items-center justify-center bg-transparent pt-28">
-    <h1 class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn">Garden Values</h1>
+    <h1 id="mainTitle" class="text-6xl sm:text-7xl text-green-800 fancy-font opacity-0 animate-fadeIn transition-all">Garden Values</h1>
   </section>
+
+  <!-- Nav Buttons Section -->
+  <section class="flex justify-center space-x-4 mt-10 mb-20">
+    <a href="#" class="px-6 py-3 text-xl rounded-full bg-black text-white border-2 border-black font-semibold shadow btn-animate btn-home">🏠 Home</a>
+    <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-stock">🛒 Stock</a>
+    <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-trading">💸 Trading</a>
+    <a href="#" class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium shadow btn-animate btn-values">📊 Values</a>
+  </section>
+
+  <!-- Scroll Shrink Script -->
+  <script>
+    const navbar = document.getElementById("navbar");
+    const mainTitle = document.getElementById("mainTitle");
+    const navTitle = document.getElementById("navTitle");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add("navbar-scrolled");
+        mainTitle.style.opacity = "0";
+        navTitle.classList.add("logo-shrink");
+      } else {
+        navbar.classList.remove("navbar-scrolled");
+        mainTitle.style.opacity = "1";
+        navTitle.classList.remove("logo-shrink");
+      }
+    });
+  </script>
 
 </body>
 </html>
